@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -12,5 +14,10 @@ func main() {
 		return c.JSON("Testando uso de memoria heroku")
 	})
 
-	app.Listen(":3000")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+
+	app.Listen(port)
 }
